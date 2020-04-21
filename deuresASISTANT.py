@@ -7,6 +7,8 @@ dies=["DILLUNS","DIMARTS","DIMECRES","DIJOUS","DIVENDRES"]
 hores=["8-9","9-10","10-11","11:30-12:30","12:30-13:30","13:30-14:30"]
 s=[[]]
 #botó per consultar o per apuntar
+#comentari Sergi
+#comentariAlvaro
 for m in s:
     op=input("Escriu 'apuntar' per poder apuntar deures nous   ").upper()
     if op == "APUNTAR":
