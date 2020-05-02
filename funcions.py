@@ -13,13 +13,9 @@ def aixecar():
 
 #porra = {clau:valor}
 
-#cognoms = {"Harun":"meraga"}
-#edat = {"Harun":17}
-#porra = {"Harun":{"Edat":13,"Cognom":"Meraga","Porra":[0,0]}}
+cognoms = {"Harun":"meraga"}
+edat = {"Harun":17}
+porra = {"Harun":{"Edat":13,"Cognom":"Meraga","Porra":[0,0]}}
 
-#print(porra["Harun"]["Edat"])
-#print(porra)
-
-prova = {}
-prova["hola"]= 10
-print(prova)
+print(porra["Harun"]["Edat"])
+print(porra)

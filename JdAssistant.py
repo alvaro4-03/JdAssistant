@@ -39,6 +39,7 @@ def crearHorari():
         print("Els "+d+" l'alumne te: "+ str(alumne1))
     if resposta == "1":
         print()
+  return alumne1
 print(alumnes)
 #TODO Fer dues funcions diferents, anterior és crear horari
 #TODO QUe ve ara és cercar quan toca una matèria
