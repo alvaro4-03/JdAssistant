@@ -68,5 +68,5 @@ elif funcio == "/CONSULTARMATERIA":
   materiaHorari()
 elif funcio == "/CONSULTARDIA":
   diaHorari()
-
-print(alumnes)
+else:
+  print("Alguna cosa no ha anat bé :(")
