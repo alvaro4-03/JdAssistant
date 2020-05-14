@@ -10,6 +10,7 @@ dies = [ "dilluns" , " dimarts" , "dimecres" , "dijous" , "divendres" ]
 hores = [ "8 a 9" , "9 a 10" , "10 a 11" , "11.30 a 12.30" , "12.30 a 13.30" , "13.30 a 14.30" ]
 numeromateria = [ 0 , 1 , 2 , 3 , 4, 5 ]
 numdia = [ 0 , 1 , 2 , 3 , 4 ]
+
 def crearHorari():
   for d in dies:
     for h in hores:
@@ -19,9 +20,11 @@ def crearHorari():
     print( "Els "+d+" l'alumne te "+ str(alumne1[f]) +"; es correcte?" )
     resposta = input( "Escriu si o no " ).upper()
     if resposta == "NO":
+        # Pintar codi input en lñínies per ocpió i recollir només input()
         print( "Quin ha sigut l'error?" )
         resposta = input("Marca la lletra 'a' si l'error és d'una sola matèria; marca la lletra 'b'si l'error és de dues matèries, marca la lletra 'c' si vols tornar a escriure l'horari sencer, marca el numero 1 si vols deixar-ho com esta  " )
         resposta = resposta.upper()
+    #TODO Canviar usant elif
     if resposta == "A":
         canvi = (alumne1[f].index(input("Indica la matèria incorrecta ").upper()))
         alumne1[f][canvi] = input("Digues la materia que correspon ").upper()
@@ -53,6 +56,7 @@ def materiaHorari():
         print("Els "+dies[n]+" no hi ha "+pregunta.lower())
 #TODO Falta fer funció que digui que toca un dia concret
 def diaHorari():
+  #TODO Mostrar els dies perquè triï
   preguntadia = input("Quin dia vols saber? ").lower()
   for n in numeromateria:
     if preguntadia in dies:
