@@ -2,8 +2,6 @@
 #TODO Millorar estil de programació: noms variables, format, mirar bones pràctiques. 
 #https://docs.google.com/document/d/1PEkRTAWlR4NYJNKJvz9iw4R6m-wJpxDi7xv5tpLPP54/edit 
 
-#TODO Només guarda horari d'un alumne, com ho faràs per guardar més d'un alumne?
-#TODO Pista, diccionaris en Pyhton.
 alumnes = {}
 alumne1 = [ [] , [] , [] , [] , [] ]
 dies = [ "dilluns" , " dimarts" , "dimecres" , "dijous" , "divendres" ]
@@ -44,8 +42,7 @@ def crearHorari():
         print()
   return alumne1
 print(alumnes)
-#TODO Fer dues funcions diferents, anterior és crear horari
-#TODO QUe ve ara és cercar quan toca una matèria
+
 def materiaHorari():
   preguntamateria = input("Quins dies tens...").upper()
   for n in numdia:
@@ -54,7 +51,7 @@ def materiaHorari():
         print ("Els "+dies[n]+" tens "+ pregunta.lower()+" de "+ hores[dato])
     else:
         print("Els "+dies[n]+" no hi ha "+pregunta.lower())
-#TODO Falta fer funció que digui que toca un dia concret
+
 def diaHorari():
   #TODO Mostrar els dies perquè triï
   preguntadia = input("Quin dia vols saber? ").lower()

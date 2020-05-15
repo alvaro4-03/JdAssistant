@@ -1,20 +1,17 @@
 #TODO Futur mirar de sincronitzar amb calendari Moodle
 deures = {}
-
-#TODO Més que deures és per apuntar dates de lliurament, no?       
-#TODO Posar cada espai en funcions. Diferents.
+     
 def apuntarDeures():
   materia = input("Digues la matèria que s'ha d'apuntar ")
   dia = input("Indica per a quin dia ")
   quins_deures = input("Esciru que vols apuntar ")
-  if materia in deures:
-    deures[materia] = deures[materia] , {dia : quins_deures}
-  else:
-    deures[materia] = {dia : quins_deures}
+  if materia not in deures:
+    deures[materia].append({dia : quins_deures})
+  else:    
+    deures[materia].append({dia : quins_deures})
   return deures
         
 def ConsultarDeuresxMateria():
-  #TODO Vigilar errors. Que passa si poso matèria que no hi ha deures.
   materia = input("Digues la matèria de la que vols saber els deures ")
   if materia in deures.keys():
     print(deures[materia])
@@ -25,7 +22,9 @@ def ConsultarDeuresxMateria():
 def ConsultarDeuresxDia():
   quin_dia = input("Digues de quin dia vols saber el deures ")
   for materia in deures.keys():
-    print(materia + " : " + deures[materia][quin_dia])
+    for deure in deures[materia]:
+       #TODO detectar que si no és el dia no el pinti
+       print(deure)
   return deures
 
 
@@ -43,6 +42,7 @@ def ConsultarDeuresxDia2():
 apuntarDeures()
 apuntarDeures()
 apuntarDeures()
+print(deures)
 ConsultarDeuresxMateria()
 ConsultarDeuresxDia()
 ConsultarDeuresxDia2()
