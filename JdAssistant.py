@@ -18,27 +18,26 @@ def crearHorari():
     print( "Els "+d+" l'alumne te "+ str(alumne1[f]) +"; es correcte?" )
     resposta = input( "Escriu si o no " ).upper()
     if resposta == "NO":
-        # Pintar codi input en lñínies per ocpió i recollir només input()
+        # Pintar codi input en línies per ocpió i recollir només input()
         print( "Quin ha sigut l'error?" )
         resposta = input("Marca la lletra 'a' si l'error és d'una sola matèria; marca la lletra 'b'si l'error és de dues matèries, marca la lletra 'c' si vols tornar a escriure l'horari sencer, marca el numero 1 si vols deixar-ho com esta  " )
         resposta = resposta.upper()
-    #TODO Canviar usant elif
     if resposta == "A":
         canvi = (alumne1[f].index(input("Indica la matèria incorrecta ").upper()))
         alumne1[f][canvi] = input("Digues la materia que correspon ").upper()
-    if resposta == "B":
+    elif resposta == "B":
         canvi = (alumne1[f].index(input("Indica la primera matèria incorrecta ").upper()))
         canvi2 = (alumne1[f].index(input("Indica la segona matèria incorrecta ").upper()))
         alumne1[f][canvi] = input("Digues la primera matèria que correspon ").upper()
         alumne1[f][canvi2] = input("Digues la segona matèria que correspon ").upper()
-    if resposta == "C":
+    elif resposta == "C":
         print("Molt bé, ara torna a començar")
         alumne1.clear()
         for h in hores:
             print("Quina materia tens "+d+" de "+h+"?")
             alumne1.append(input().upper())
         print("Els "+d+" l'alumne te: "+ str(alumne1))
-    if resposta == "1":
+    else:
         print()
   return alumne1
 print(alumnes)
@@ -53,7 +52,7 @@ def materiaHorari():
         print("Els "+dies[n]+" no hi ha "+pregunta.lower())
 
 def diaHorari():
-  #TODO Mostrar els dies perquè triï
+  print(dies)
   preguntadia = input("Quin dia vols saber? ").lower()
   for n in numeromateria:
     if preguntadia in dies:
@@ -64,7 +63,8 @@ print("Les funcions disponibles són: /crearhorari o /consultarmateria i /consul
 print("Escriu la funció que vulguis utilitzar")
 funcio = input().upper()
 if funcio == "/CREARHORARI":
-  alumnes[input("Posa el teu nom ")] = str(crearHorari())
+  nom_alumne = input("Posa el teu nom ")
+  alumnes[nom_alumne] = str(crearHorari())
 elif funcio == "/CONSULTARMATERIA":
   materiaHorari()
 elif funcio == "/CONSULTARDIA":
