@@ -1,3 +1,7 @@
+import telebot
+import random
+from telebot import types
+
 def sumar(numero1, numero2):
   resultat = numero1 + numero2
   return resultat

@@ -4,7 +4,7 @@ deures = {}
 def apuntarDeures():
   materia = input("Digues la matèria que s'ha d'apuntar ")
   dia = input("Indica per a quin dia ")
-  quins_deures = input("Esciru que vols apuntar ")
+  quins_deures = input("Escriu que vols apuntar ")
   if materia not in deures:
     deures[materia] = []
     deures[materia].append({dia : quins_deures})
