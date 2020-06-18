@@ -1,4 +1,5 @@
 #TODO Futur mirar de sincronitzar amb calendari Moodle
+
 deures = {}
      
 def apuntarDeures():
@@ -34,6 +35,5 @@ def ConsultarDeuresxDia():
 apuntarDeures()
 apuntarDeures()
 apuntarDeures()
-print(deures)
 ConsultarDeuresxMateria()
 ConsultarDeuresxDia()

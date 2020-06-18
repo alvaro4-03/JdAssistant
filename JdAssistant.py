@@ -20,7 +20,8 @@ def crearHorari():
     if resposta == "NO":
         # Pintar codi input en línies per ocpió i recollir només input()
         print( "Quin ha sigut l'error?" )
-        resposta = input("Marca la lletra 'a' si l'error és d'una sola matèria; marca la lletra 'b'si l'error és de dues matèries, marca la lletra 'c' si vols tornar a escriure l'horari sencer, marca el numero 1 si vols deixar-ho com esta  " )
+        print( "Marca la lletra 'a' si l'error és d'una sola matèria; marca la lletra 'b'si l'error és de dues matèries, marca la lletra 'c' si vols tornar a escriure l'horari sencer, marca el numero 1 si vols deixar-ho com esta  " )
+        resposta = input()
         resposta = resposta.upper()
     if resposta == "A":
         canvi = (alumne1[f].index(input("Indica la matèria incorrecta ").upper()))
@@ -40,7 +41,6 @@ def crearHorari():
     else:
         print()
   return alumne1
-print(alumnes)
 
 def materiaHorari():
   preguntamateria = input("Quins dies tens...").upper()

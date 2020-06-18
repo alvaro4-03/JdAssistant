@@ -10,17 +10,9 @@ En principi constarà amb un calendari per consultar i una agenda.
 
 Permetrà escriure deures en un calendari, consultar els deures apuntats i possiblement t'ho recordarà amb temps per a que ho pugui fer l'ususari.
 
-```
-
-```
-
 ### Horari
 
 Permet escriure l'horari de classes dels estudiants de l'INS JDA (8-14:30)
-
-```
-
-```
 
 ### Possibles afegits
 
