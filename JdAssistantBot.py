@@ -6,7 +6,7 @@ from telebot import types
 
 #TODO
 #Token que lliga amb el bot de Telegram
-TOKEN = '970292498:AAFB32dEsoBGBCnqJyIeXL7urpCHGjCQOZg' 
+TOKEN = '925882991:AAGjtPQ-etsHgm6_vWClV3OwR1BktgE22RI' 
 bot = telebot.TeleBot(TOKEN)
 
 #Diccionari per guardar deures
@@ -17,13 +17,10 @@ def agenda_command(missatge):
   #missatge m'arriba tota la info del xat que estic fent servir
   missatge.from_user.username
   #identificador conversa missatge.chat.id
-  #TODO fer que apareixin les matèries amb una botonera
-  
+    
   #Fem botonera
   markup = types.ReplyKeyboardMarkup(row_width=3, one_time_keyboard=True)
   markup.add(types.KeyboardButton("Mates"),types.KeyboardButton("Català"),types.KeyboardButton("Socials"),types.KeyboardButton("Castellà"),types.KeyboardButton("Naturals/Bio"),types.KeyboardButton("Fisica"),types.KeyboardButton("Filo/Etica"),types.KeyboardButton("Quimica"),types.KeyboardButton("Agenda"),types.KeyboardButton("EF"),types.KeyboardButton("CMC"),types.KeyboardButton("Eco"),types.KeyboardButton("Eco Empresa"),types.KeyboardButton("Tecno"),types.KeyboardButton("English"),types.KeyboardButton("Musica"),types.KeyboardButton("Plastica"),types.KeyboardButton("Optativa"))
-
-	
   #Creem la resposta
   #identificador conversa, missatge , la botonera 
   resposta = bot.send_message(missatge.chat.id,"Escull la matèria que vols apuntar",reply_markup=markup)
@@ -38,20 +35,25 @@ def triarDia(missatge):
   alumne = missatge.from_user.username
   materia = missatge.text
   #Omplir diccionari
-  #diccionari_alumnes = { alumne : materia : [[ dia , tasca ],[]]}}
   #Demanar dia
   markup = types.ReplyKeyboardMarkup(row_width=1, one_time_keyboard=True)
   markup.add(types.KeyboardButton("Dilluns"),types.KeyboardButton("Dimarts"),types.KeyboardButton("Dimecres"),types.KeyboardButton("Dijous"),types.KeyboardButton("Divendres"))
   resposta1=bot.send_message(missatge.chat.id,"Escull el dia per al que apuntar",reply_markup=markup)
   #Escriure els deures
-  bot.register_next_step_handler(resposta1, EscriureDeures, alumne, materia)
-  return ""
-
+  bot.register_next_step_handler(resposta1, EscriureDeures)
+  
 def EscriureDeures(missatge):
   #llistat_alumnes = {alummne : {materia : [[dia,tasca][]]}}
+  markup = types.ReplyKeyboardMarkup(row_width=1, one_time_keyboard=True)
+  markup.add(types.KeyboardButton("Seguir"))
+  resposta1=bot.send_message(missatge.chat.id,"Fes clic al botó per seguir",reply_markup=markup)
+  #Escriure els deures
+  bot.register_next_step_handler(resposta1, Revisar)
 
-  return ""
-
+def Revisar(missatge):
+  materia = missatge.text
+  alumne = missatge.from_user.username
+  bot.send_message("Has apuntat ")
 #Comencen comandes
 @bot.message_handler(commands=['mostraDeures'])
 def mostraDeures_command(missatge):  
