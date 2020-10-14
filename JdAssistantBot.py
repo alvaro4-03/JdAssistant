@@ -6,11 +6,13 @@ from telebot import types
 
 #TODO
 #Token que lliga amb el bot de Telegram
-TOKEN = '925882991:AAGjtPQ-etsHgm6_vWClV3OwR1BktgE22RI' 
+TOKEN = '1376336790:AAFcTgWbf-4pJNejrAGknJSxZzuaCI6wXj0' 
 bot = telebot.TeleBot(TOKEN)
 
 #Diccionari per guardar deures
 
+#Diccionari per guardar comanda i username
+comandes = {}
 #Comencen comandes
 @bot.message_handler(commands=['agenda'])
 def agenda_command(missatge):
@@ -60,5 +62,13 @@ def mostraDeures_command(missatge):
   #Pintaràs els deures que tens guardats
   #Triant el diccionari que correspon a missatge.from_user.username
   return ""
+
+
+@bot.message_handler(func=lambda message: True)
+def echo_all(missatge):
+	#Tractar només si t'interessa, ha fet camñí que tocar.
+  #if comanda[missatge.missatge.from_user.username] == "apuntar deures":
+      #Posar missatge.text al diccionari de deures
+      bot.send_message(missatge.chat.id, "Deures apuntats")
 
 bot.polling()
