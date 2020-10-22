@@ -45,6 +45,11 @@ def triarDia(missatge):
   bot.register_next_step_handler(resposta1, EscriureDeures)
   
 def EscriureDeures(missatge):
+  def echo_all(missatge):
+	#Tractar només si t'interessa, ha fet camñí que tocar.
+  #if comanda[missatge.missatge.from_user.username] == "apuntar deures":
+      #Posar missatge.text al diccionari de deures
+      bot.send_message(missatge.chat.id, input())
   #llistat_alumnes = {alummne : {materia : [[dia,tasca][]]}}
   markup = types.ReplyKeyboardMarkup(row_width=1, one_time_keyboard=True)
   markup.add(types.KeyboardButton("Seguir"))
@@ -64,8 +69,8 @@ def mostraDeures_command(missatge):
   return ""
 
 
-@bot.message_handler(func=lambda message: True)
-def echo_all(missatge):
+#@bot.message_handler(func=lambda message: True)
+#def echo_all(missatge):
 	#Tractar només si t'interessa, ha fet camñí que tocar.
   #if comanda[missatge.missatge.from_user.username] == "apuntar deures":
       #Posar missatge.text al diccionari de deures
