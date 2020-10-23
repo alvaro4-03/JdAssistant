@@ -45,7 +45,12 @@ def triarDia(missatge):
   bot.register_next_step_handler(resposta1, EscriureDeures)
   
 def EscriureDeures(missatge):
-  
+  @bot.message_handler(func=lambda message: True)
+  def echo_all(missatge):
+    resposta = bot.send_message(missatge.chat.id.echo_all )
+	#Tractar només si t'interessa, ha fet camñí que tocar.
+  #if comanda[missatge.missatge.from_user.username] == "apuntar deures":
+   #Posar missatge.text al diccionari de deures
   #Escriure els deures
   bot.register_next_step_handler(resposta1, Revisar)
 
