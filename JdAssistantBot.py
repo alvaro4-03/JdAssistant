@@ -54,10 +54,6 @@ def EscriureDeures(missatge):
   #Escriure els deures
   bot.register_next_step_handler(resposta1, Revisar)
 
-def Revisar(missatge):
-  materia = missatge.text
-  alumne = missatge.from_user.username
-  bot.send_message("Has apuntat ")
 #Comencen comandes
 @bot.message_handler(commands=['mostraDeures'])
 def mostraDeures_command(missatge):  
