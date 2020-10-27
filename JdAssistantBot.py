@@ -53,7 +53,7 @@ def EscriureDeures(missatge):
   #if comanda[missatge.missatge.from_user.username] == "apuntar deures":
    #Posar missatge.text al diccionari de deures
   #Escriure els deures
-  bot.register_next_step_handler(resposta1, Revisar)
+  bot.register_next_step_handler(resposta1)
 
 #Comencen comandes
 @bot.message_handler(commands=['mostraDeures'])
