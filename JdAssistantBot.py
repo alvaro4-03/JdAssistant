@@ -12,15 +12,16 @@ bot = telebot.TeleBot(TOKEN)
 #Diccionari per guardar deures
 
 #Diccionari per guardar comanda i username
-comandes = {}
+
 #Comencen comandes
 @bot.message_handler(commands=['agenda'])
 def agenda_command(missatge):
-  missatge.from_user.username
+
   markup = types.ReplyKeyboardMarkup(row_width=3, one_time_keyboard=True)
-  markup.add(types.KeyboardButton("Mates") , types.KeyboardButton("Català") , types.KeyboardButton("Socials" , types.KeyboardButton("Castellà") , types.KeyboardButton("Naturals/Bio") , types.KeyboardButton("Fisica") , types.KeyboardButton("Filo/Etica") , types.KeyboardButton("Quimica") , types.KeyboardButton("Agenda") , types.KeyboardButton("EF") , types.KeyboardButton("CMC") , types.KeyboardButton("Eco") , types.KeyboardButton("Eco Empresa") , types.KeyboardButton("Tecno") , types.KeyboardButton("English") , types.KeyboardButton("Musica") , types.KeyboardButton("Plastica") , types.KeyboardButton("Optativa"))
-  resposta=bot.send_message(missatge.chat.id,"Escull la matèria dels deures que vols apuntar",reply_markup=markup)
+  markup.add(types.KeyboardButton("Mates"),types.KeyboardButton("Català"),types.KeyboardButton("Socials"),types.KeyboardButton("Castellà"),types.KeyboardButton("Naturals/Bio"),types.KeyboardButton("Fisica"),types.KeyboardButton("Filo/Etica"),types.KeyboardButton("Quimica"),types.KeyboardButton("Agenda"),types.KeyboardButton("EF"),types.KeyboardButton("CMC"),types.KeyboardButton("Eco"),types.KeyboardButton("Eco Empresa"),types.KeyboardButton("Tecno"),types.KeyboardButton("English"),types.KeyboardButton("Musica"),types.KeyboardButton("Plastica"),types.KeyboardButton("Optativa"))
   bot.register_next_step_handler(resposta, triarDia)
+
+  resposta=bot.send_message(missatge.chat.id,"Escull la matèria que vols apuntar",reply_markup=markup)
 
 #def triarDia(missatge):
   # hauràs d¡inserir usuari i resposta triada de matària
