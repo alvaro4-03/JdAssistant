@@ -6,7 +6,7 @@ from telebot import types
 
 #TODO
 #Token que lliga amb el bot de Telegram
-TOKEN = '970292498:AAFB32dEsoBGBCnqJyIeXL7urpCHGjCQOZg' 
+TOKEN = '1376336790:AAFcTgWbf-4pJNejrAGknJSxZzuaCI6wXj0' 
 bot = telebot.TeleBot(TOKEN)
 
 #Diccionari per guardar deures
