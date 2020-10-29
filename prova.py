@@ -26,7 +26,7 @@ def agenda_command(missatge):
   #TODO fer que apareixin les matèries amb una botonera
 
   #Fem botonera
-  markup = types.ReplyKeyboardMarkup(row_width=2, one_time_keyboard=True)
+  markup = types.ReplyKeyboardMarkup(row_width=3, one_time_keyboard=True)
   markup.add(types.KeyboardButton("Mates"),types.KeyboardButton("Català"),types.KeyboardButton("Socials"),types.KeyboardButton("Castellà"),types.KeyboardButton("Naturals/Bio"),types.KeyboardButton("Fisica"),types.KeyboardButton("Filo/Etica"),types.KeyboardButton("Quimica"),types.KeyboardButton("Agenda"),types.KeyboardButton("EF"),types.KeyboardButton("CMC"),types.KeyboardButton("Eco"),types.KeyboardButton("Eco Empresa"),types.KeyboardButton("Tecno"),types.KeyboardButton("English"),types.KeyboardButton("Musica"),types.KeyboardButton("Plastica"),types.KeyboardButton("Optativa"))
 
 
@@ -46,7 +46,7 @@ def triarDia(missatge):
   #{alumne:{missatge.text: [[dia,tasca],[]]}}
   #Demanar dia
   markup = types.ReplyKeyboardMarkup(row_width=5, one_time_keyboard=True)
-  markup.add(types.KeyboardButton("Dll"),types.KeyboardButton("Dm"),types.KeyboardButton("Dc"),types.KeyboardButton("Dj"),types.KeyboardButton("Dv"))
+  markup.add(types.KeyboardButton("Dilluns"),types.KeyboardButton("Dimats"),types.KeyboardButton("Dimecres"),types.KeyboardButton("Dijous"),types.KeyboardButton("Divendres"))
   resposta1=bot.send_message(missatge.chat.id,"Escull el dia per al que apuntar",reply_markup=markup)
   #Escriure els deures
   bot.register_next_step_handler(resposta1, EscriureDeures)
