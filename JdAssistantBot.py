@@ -25,7 +25,7 @@ def agenda_command(missatge):
   markup.add(types.KeyboardButton("Mates") , types.KeyboardButton("Català") , types.KeyboardButton("Socials" , types.KeyboardButton("Castellà") , types.KeyboardButton("Naturals/Bio") , types.KeyboardButton("Fisica") , types.KeyboardButton("Filo/Etica") , types.KeyboardButton("Quimica") , types.KeyboardButton("Agenda") , types.KeyboardButton("EF") , types.KeyboardButton("CMC") , types.KeyboardButton("Eco") , types.KeyboardButton("Eco Empresa") , types.KeyboardButton("Tecno") , types.KeyboardButton("English") , types.KeyboardButton("Musica") , types.KeyboardButton("Plastica") , types.KeyboardButton("Optativa"))
   #Creem la resposta
   #identificador conversa, missatge , la botonera 
-  resposta = bot.send_message (missatge.chat.id , "HELLO" , reply_markup = markup)
+resposta = bot.send_message (missatge.chat.id , "HELLO" , reply_markup = markup )
 	
   #Li dic que quan toqui un botó que ha de fer
   #envies la resposta i quan toqui botó fan la funció jugar
