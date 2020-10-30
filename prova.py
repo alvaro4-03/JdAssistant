@@ -45,7 +45,7 @@ def triarDia(missatge):
   #Omplir diccionari
   #{alumne:{missatge.text: [[dia,tasca],[]]}}
   #Demanar dia
-  markup = types.ReplyKeyboardMarkup(row_width=5, one_time_keyboard=True)
+  markup = types.ReplyKeyboardMarkup(row_width=1, one_time_keyboard=True)
   markup.add(types.KeyboardButton("Dilluns"),types.KeyboardButton("Dimats"),types.KeyboardButton("Dimecres"),types.KeyboardButton("Dijous"),types.KeyboardButton("Divendres"))
   resposta1=bot.send_message(missatge.chat.id,"Escull el dia per al que apuntar",reply_markup=markup)
   #Escriure els deures
