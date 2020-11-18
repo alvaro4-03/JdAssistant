@@ -67,6 +67,7 @@ def consultaragenda(missatge):
  # markup = types.ReplyKeyboardMarkup(row_width=1, one_time_keyboard=True)
 #  markup.add(types.KeyboardButton("Dilluns"),types.KeyboardButton("Dimarts"),types.KeyboardButton("Dimecres"),types.KeyboardButton("Dijous"),types.KeyboardButton("Divendres"))
   bot.send_message(missatge.chat.id, "Escriu els dia que vols consultar els deures"
+  resposta_materia = missatge.text
 
 #  resposta_materia = bot.send_message(missatge.chat.id, "Escull el dia del que vols consultar els deures", reply_markup=markup)
   if resposta_materia in diccionari_alumne[missatge.from_user.username].keys():
