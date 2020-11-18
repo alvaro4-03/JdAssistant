@@ -6,7 +6,7 @@ from telebot import types
 
 #TODO
 #Token que lliga amb el bot de Telegram
-TOKEN = '1376336790:AAFcTgWbf-4pJNejrAGknJSxZzuaCI6wXj0' 
+TOKEN = '1376336790:AAFcTgWbf-4pJNejrAGknJSxZzuaCI6wXj0'
 bot = telebot.TeleBot(TOKEN)
 
 #Diccionari per guardar deures
@@ -63,24 +63,14 @@ def EscriureDeures (missatge):
 
 @bot.message_handler(commands=['consultaragenda'])
 def consultaragenda(missatge):
-  bot.send_message(missatge.chat.id, diccionari_alumne[missatge.from_user.username][variable[missatge.from_user.username]])
- # markup2 = types.ReplyKeyboardMarkup(row_width=1, one_time_keyboard=True)
- # markup2.add(types.KeyboardButton("Dilluns"),types.KeyboardButton("Dimarts"),types.KeyboardButton("Dimecres"),types.KeyboardButton("Dijous"),types.KeyboardButton("Divendres"))
- # dia = reply_markup=markup2
-  #markup = types.ReplyKeyboardMarkup(row_width=2, one_time_keyboard=True)
-  #markup.add(types.KeyboardButton("Dia"), types.KeyboardButton("Materia"))
-  #resposta_triar_manera = bot.send_message(missatge.chat.id, "Escull com vols consultar els deures apuntats; a travès del dia o de la matèria?", reply_markup=markup)
-  #if resposta_triar_manera == "Materia":
-   # markup = types.ReplyKeyboardMarkup(row_width=3, one_time_keyboard=True)
-  #  markup.add(types.KeyboardButton("Mates"),types.KeyboardButton("Català"),types.KeyboardButton("Socials"),types.KeyboardButton("Castellà"),types.KeyboardButton("Naturals/Bio"),types.KeyboardButton("Fisica"),types.KeyboardButton("Filo/Etica"),types.KeyboardButton("Quimica"), types.KeyboardButton("EF"),types.KeyboardButton("CMC"),types.KeyboardButton("Eco"),types.KeyboardButton("Eco Empresa"),types.KeyboardButton("Tecno"),types.KeyboardButton("English"),types.KeyboardButton("Musica"),types.KeyboardButton("Plastica"),types.KeyboardButton("Optativa"))
-  #  resposta_materia = bot.send_message(missatge.chat.id, "Escull la matèria de la que vols consultar els deures", reply_markup=markup)
-  #elif resposta_triar_manera == "Dia":
-  #  markup = types.ReplyKeyboardMarkup(row_width=1, one_time_keyboard=True)
-   # markup.add(types.KeyboardButton("Dilluns"),types.KeyboardButton("Dimarts"),types.KeyboardButton("Dimecres"),types.KeyboardButton("Dijous"),types.KeyboardButton("Divendres"))
-    #resposta_dia = bot.send_message(missatge.chat.id, "Escull el dia que vols consultar els deures", reply_markup=markup)
-  #resposta_dia = bot.send_message(missatge.chat.id, "Escll el dia del que vols consultar els deures", dia)
-#  bot.load_next_step_handlers()
- # consulta = bot.send_message(missatge.chat.id, missatge.from_user.username, resposta3)
+#  bot.send_message(missatge.chat.id, diccionari_alumne[missatge.from_user.username][variable[missatge.from_user.username]])
+ # markup = types.ReplyKeyboardMarkup(row_width=1, one_time_keyboard=True)
+#  markup.add(types.KeyboardButton("Dilluns"),types.KeyboardButton("Dimarts"),types.KeyboardButton("Dimecres"),types.KeyboardButton("Dijous"),types.KeyboardButton("Divendres"))
+  bot.send_message(missatge.chat.id, "Escriu els dia que vols consultar els deures"
+
+#  resposta_materia = bot.send_message(missatge.chat.id, "Escull el dia del que vols consultar els deures", reply_markup=markup)
+  if resposta_materia in diccionari_alumne[missatge.from_user.username].keys():
+    bot.send_message(missatge.chat.id, "Ben fet")
   #Pintaràs els deures que tens guardats
   #Triant el diccionari que correspon a missatge.from_user.username
 #  return ""
