@@ -47,12 +47,12 @@ def EscriureDeures (missatge):
   materia = missatge.text
   resposta2 = bot.send_message(missatge.chat.id, "Escriu els  deures que vols que s'apuntin de " + materia)
   @bot.message_handler(func=lambda m: True)
-  def EscriureDeures2(missatges):
-    resposta3 = missatges.text
-#    deure = bot.send_message(missatges.chat.id, "Has apuntat " + resposta3 + " de " + materia)
+  def Deures(missatge):
+    resposta3 = missatge.text
+    deure = bot.send_message(missatge.chat.id, "Has apuntat " + resposta3 + " de " + materia)
 
     diccionari_alumne[missatge.from_user.username][variable[missatge.from_user.username]]=[materia + ": " + resposta3]
-  return diccionari_alumne
+    return ""
 
 #Tractar només si t'interessa, ha fet camñí que tocar.
   #if comanda[missatge.missatge.from_user.username] == "apuntar deures":
@@ -65,16 +65,17 @@ def EscriureDeures (missatge):
 def consultaragenda(missatge):
   markup = types.ReplyKeyboardMarkup(row_width=1, one_time_keyboard=True)
   markup.add(types.KeyboardButton("Dilluns"),types.KeyboardButton("Dimarts"),types.KeyboardButton("Dimecres"),types.KeyboardButton("Dijous"),types.KeyboardButton("Divendres"))
-  resposta_materia = bot.send_message(missatge.chat.id, "Escull el dia del que vols consultar els deures", reply_markup=markup)
-  resposta=missatge.text
-  if resposta in diccionari_alumne[missatge.from_user.username].keys():
-    bot.send_message(missatge.chat.id, "Ben fet")
-
+  resposta1 = bot.send_message(missatge.chat.id, "Escull el dia del que vols consultar els deures", reply_markup=markup)
+  def consulta(missatge):
+    if resposta1 in diccionari_alumne[missatge.from_user.username].keys():
+      bot.send_message(missatge.chat.id, "Ben fet")
+    else:
+      bot.send_message(missatge.chat.id, diccionari_alumne[missatge.from_user.username].keys())
 #  resposta_materia = missatge.text
 #  bot.send_message(missatge.chat.id, diccionari_alumne[missatge.from_user.username][variable[missatge.from_user.username]])
   #Pintaràs els deures que tens guardats
   #Triant el diccionari que correspon a missatge.from_user.username
-#  return ""
+  return ""
 
 
 #Tractar només si t'interessa, ha fet camñí que tocar.
