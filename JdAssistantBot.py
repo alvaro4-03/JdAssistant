@@ -67,7 +67,7 @@ def consultaragenda(missatge):
   markup.add(types.KeyboardButton("Dilluns"),types.KeyboardButton("Dimarts"),types.KeyboardButton("Dimecres"),types.KeyboardButton("Dijous"),types.KeyboardButton("Divendres"))
   resposta1 = bot.send_message(missatge.chat.id, "Escull el dia del que vols consultar els deures", reply_markup=markup)
 
-  bot.register_next_step_handler(consulta, resposta1)
+  bot.register_next_step_handler(resposta1, consulta)
 
 def consulta(missatge):
   if missatge.text in diccionari_alumne[missatge.from_user.username].keys():
