@@ -66,11 +66,14 @@ def consultaragenda(missatge):
   markup = types.ReplyKeyboardMarkup(row_width=1, one_time_keyboard=True)
   markup.add(types.KeyboardButton("Dilluns"),types.KeyboardButton("Dimarts"),types.KeyboardButton("Dimecres"),types.KeyboardButton("Dijous"),types.KeyboardButton("Divendres"))
   resposta1 = bot.send_message(missatge.chat.id, "Escull el dia del que vols consultar els deures", reply_markup=markup)
-  def consulta(missatge):
-    if resposta1 in diccionari_alumne[missatge.from_user.username].keys():
-      bot.send_message(missatge.chat.id, "Ben fet")
-    else:
-      bot.send_message(missatge.chat.id, diccionari_alumne[missatge.from_user.username].keys())
+
+  bot.register_next_step_handler(consulta)
+
+def consulta(missatge):
+  if missatge.text in diccionari_alumne[missatge.from_user.username].keys():
+    bot.send_message(missatge.chat.id, "Ben fet")
+  else:
+    bot.send_message(missatge.chat.id, diccionari_alumne[missatge.from_user.username].keys())
 #  resposta_materia = missatge.text
 #  bot.send_message(missatge.chat.id, diccionari_alumne[missatge.from_user.username][variable[missatge.from_user.username]])
   #Pintaràs els deures que tens guardats
