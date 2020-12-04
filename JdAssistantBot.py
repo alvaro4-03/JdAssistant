@@ -12,6 +12,7 @@ bot = telebot.TeleBot(TOKEN)
 #Diccionari per guardar deures
 diccionari_alumne = {}
 variable = {}
+estat_anim = {}
 #Diccionari per guardar comanda i username
 #Comencen comandes
 
@@ -71,7 +72,7 @@ def consultaragenda(missatge):
 
 def consulta(missatge):
   if missatge.text in diccionari_alumne[missatge.from_user.username].keys():
-    bot.send_message(missatge.chat.id, "Ben fet")
+    bot.send_message(missatge.chat.id, diccionari_alumne[missatge.from_user.username][variable[missatge.from_user.username]])
   else:
     bot.send_message(missatge.chat.id, diccionari_alumne[missatge.from_user.username].keys())
 #  resposta_materia = missatge.text
@@ -81,6 +82,16 @@ def consulta(missatge):
   return ""
 
 
+@bot.message_handler(commands=['estatdanim'])
+def estatDanim (missatge):
+  bot.send_message(missatge.chat.id, "Com et trobes?")
+  resposta = missatge.text
+  bot.register_next_step_handler(resposta, estat)
+
+def estat(missatge):
+  estat = missatge.text
+  estat_anim[missatge.from_user.username]=[]
+  estat_anim[missatge.from_user.username][variable[missatge.from_user.username]]= estat
 #Tractar només si t'interessa, ha fet camñí que tocar.
 #if comanda[missatge.missatge.from_user.username] == "apuntar deures":
       #Posar missatge.text al diccionari de deures
