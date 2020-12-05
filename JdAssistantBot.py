@@ -12,6 +12,7 @@ bot = telebot.TeleBot(TOKEN)
 #Diccionari per guardar deures
 diccionari_alumne = {}
 variable = {}
+var_materia = {}
 estat_anim = {}
 #Diccionari per guardar comanda i username
 #Comencen comandes
@@ -33,8 +34,15 @@ def agenda_command(missatge):
   dia = missatge.text
   variable[missatge.from_user.username] = dia
   alumne = missatge.from_user.username
-  diccionari_alumne[alumne] = {dia:[]}
+  if diccionari_alumne == {}:
+    diccionari_alumne[alumne] = {dia:[]}
+    print(diccionari_alumne)
+  else:
+    diccionari_alumne[alumne]= diccionari_alumne[alumne][varaible[alumne], []
 
+  print(diccionari_alumne[alumne])
+  print(variable)
+  print(dia)
   markup = types.ReplyKeyboardMarkup(row_width=3, one_time_keyboard=True)
   markup.add(types.KeyboardButton("Mates"),types.KeyboardButton("Català"),types.KeyboardButton("Socials"),types.KeyboardButton("Castellà"),types.KeyboardButton("Naturals/Bio"),types.KeyboardButton("Fisica"),types.KeyboardButton("Filo/Etica"),types.KeyboardButton("Quimica"), types.KeyboardButton("EF"),types.KeyboardButton("CMC"),types.KeyboardButton("Eco"),types.KeyboardButton("Eco Empresa"),types.KeyboardButton("Tecno"),types.KeyboardButton("English"),types.KeyboardButton("Musica"),types.KeyboardButton("Plastica"),types.KeyboardButton("Optativa"))
   resposta=bot.send_message(missatge.chat.id, "Escull la matèria que vols apuntar per al " + dia, reply_markup=markup)
@@ -46,14 +54,24 @@ def agenda_command(missatge):
 
 def EscriureDeures (missatge):
   materia = missatge.text
+  var_materia[missatge.from_user.username] = materia
+  print(materia)
   resposta2 = bot.send_message(missatge.chat.id, "Escriu els  deures que vols que s'apuntin de " + materia)
   @bot.message_handler(func=lambda m: True)
   def Deures(missatge):
-    resposta3 = missatge.text
-    deure = bot.send_message(missatge.chat.id, "Has apuntat " + resposta3 + " de " + materia)
 
-    diccionari_alumne[missatge.from_user.username][variable[missatge.from_user.username]]=[materia + ": " + resposta3]
-    return ""
+    alumne = missatge.from_user.username
+    print(materia)
+    print(diccionari_alumne[alumne][variable[alumne]])
+    resposta3 = missatge.text
+    deure = bot.send_message(missatge.chat.id, "Has apuntat " + resposta3)
+    if diccionari_alumne[alumne][variable[alumne]] == []:
+      diccionari_alumne[alumne][variable[alumne]]=[var_materia[alumne] + ": " + resposta3]
+      print(diccionari_alumne)
+    else:
+      diccionari_alumne[alumne][variable[alumne]]=diccionari_alumne[alumne][variable[alumne]], [var_materia[alumne] + ": " + resposta3]
+  print(diccionari_alumne)
+  return ""
 
 #Tractar només si t'interessa, ha fet camñí que tocar.
   #if comanda[missatge.missatge.from_user.username] == "apuntar deures":
@@ -67,14 +85,14 @@ def consultaragenda(missatge):
   markup = types.ReplyKeyboardMarkup(row_width=1, one_time_keyboard=True)
   markup.add(types.KeyboardButton("Dilluns"),types.KeyboardButton("Dimarts"),types.KeyboardButton("Dimecres"),types.KeyboardButton("Dijous"),types.KeyboardButton("Divendres"))
   resposta1 = bot.send_message(missatge.chat.id, "Escull el dia del que vols consultar els deures", reply_markup=markup)
-
+  variable[missatge.from_user.username] = resposta1
   bot.register_next_step_handler(resposta1, consulta)
 
 def consulta(missatge):
   if missatge.text in diccionari_alumne[missatge.from_user.username].keys():
     bot.send_message(missatge.chat.id, diccionari_alumne[missatge.from_user.username][variable[missatge.from_user.username]])
   else:
-    bot.send_message(missatge.chat.id, diccionari_alumne[missatge.from_user.username].keys())
+    bot.send_message(missatge.chat.id, "El dia que demamnes no te deures asignats")
 #  resposta_materia = missatge.text
 #  bot.send_message(missatge.chat.id, diccionari_alumne[missatge.from_user.username][variable[missatge.from_user.username]])
   #Pintaràs els deures que tens guardats
