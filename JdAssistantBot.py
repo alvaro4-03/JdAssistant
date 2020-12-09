@@ -15,6 +15,7 @@ diccionari_alumne = {}
 variable = {}
 var_materia = {}
 estat_anim = {}
+estat_anim_neg = {}
 diccionari_deures = {}
 temps = {}
 variable_horari = {}
@@ -36,11 +37,16 @@ def agenda_command(missatge):
   dia = missatge.text
   variable[missatge.from_user.username] = dia
   alumne = missatge.from_user.username
+
   if diccionari_alumne == {}:
     diccionari_alumne[alumne] = {dia:[]}
-    print(diccionari_alumne)
+
+  elif diccionari_alumne != {} and missatge.from_user.username not in diccionari_alumne.keys():
+    diccionari_alumne[missatge.from_user.username] = {dia:[]}
+
   elif diccionari_alumne  != {} and dia not in  diccionari_alumne[alumne].keys():
-    diccionari_alumne[alumne] = diccionari_alumne[alumne],{dia:[]}
+    diccionari_alumne[alumne] = [diccionari_alumne[alumne],{dia:[]}]
+
   else:
     diccionari_alumne[alumne]= diccionari_alumne[alumne]
 
@@ -70,11 +76,18 @@ def EscriureDeures (missatge):
     resposta3 = missatge.text
     deure = bot.send_message(missatge.chat.id, "Has apuntat " + resposta3)
     print(diccionari_alumne)
-    if diccionari_alumne[alumne][variable[alumne]] == []:
+    p = len(diccionari_alumne[alumne])
+    if p-1 != 0 and diccionari_alumne[alumne][p-1][variable[alumne]] == []:
+      diccionari_alumne[alumne][p-1][variable[alumne]]=[var_materia[alumne] + ": " + resposta3]
+      bot.send_animation(missatge.chat.id, "https://im3.ezgif.com/tmp/ezgif-3-fbe94dd84420.gif")
+      print(diccionari_alumne)
+    elif diccionari_alumne[alumne][variable[alumne]] == []:
       diccionari_alumne[alumne][variable[alumne]]=[var_materia[alumne] + ": " + resposta3]
+      bot.send_animation(missatge.chat.id, "https://im3.ezgif.com/tmp/ezgif-3-fbe94dd84420.gif")
       print(diccionari_alumne)
     else:
       diccionari_alumne[alumne][variable[alumne]]=[diccionari_alumne[alumne][variable[alumne]], [var_materia[alumne] + ": " + resposta3]]
+      bot.send_animation(missatge.chat.id, "https://im3.ezgif.com/tmp/ezgif-3-fbe94dd84420.gif")
       print(diccionari_alumne)
   return ""
 
@@ -89,10 +102,11 @@ def consultaragenda(missatge):
 def consulta(missatge):
   variable[missatge.from_user.username] = missatge.text
   print(variable)
-  print(diccionari_alumne[missatge.from_user.username][variable[missatge.from_user.username]])
-
-  if variable[missatge.from_user.username] in diccionari_alumne[missatge.from_user.username].keys():
-    for u in diccionari_alumne[missatge.from_user.username][variable[missatge.from_user.username]]:
+  print(diccionari_alumne[missatge.from_user.username])
+  if variable[missatge.from_user.username] in dies:
+    f = dies.index(variable[missatge.from_user.username])
+  if variable[missatge.from_user.username] in diccionari_alumne[missatge.from_user.username][f].keys():
+    for u in diccionari_alumne[missatge.from_user.username][f][variable[missatge.from_user.username]]:
       bot.send_message(missatge.chat.id, u)
     print(u)
   else:
@@ -115,17 +129,22 @@ def estat(missatge):
   else:
     bot.send_animation(missatge.chat.id, "https://media.tenor.com/images/a1804436e7606fc88ff8a69c9b0bf65c/tenor.gif")
 
-  if missatge.text == ":- (":
+  if missatge.text == ":- (" and estat_anim_neg == {}:
     temps[missatge.from_user.username] = missatge.date
-
-  estat = [missatge.text + datetime.datetime.fromtimestamp(missatge.date).strftime('%c')]
-  if estat_anim == {}:
-    estat_anim[missatge.from_user.username] = [estat]
+    estat_anim_neg[missatge.from_user.username] = [missatge.text + " : " + datetime.datetime.fromtimestamp(missatge.date).strftime('%c')]
+  elif missatge.text == ":- (" and estat_anim_neg != {}:
+    estat_anim_neg[missatge.from_user.username] = estat_anim_neg[missatge.from_user.username],[missatge.text + datetime.datetime.fromtimestamp(missatge.date).strftime('%c')]
   else:
-    estat_anim[missatge.from_user.username]= [estat_anim[missatge.from_user.username] + estat]
+    estat_anim[missatge.from_user.username]= missatge.text
   print(estat_anim)
-  print(estat_anim[missatge.from_user.username])
+  print(estat_anim_neg)
 
+  if len(estat_anim_neg[missatge.from_user.username])  >= 3:
+    bot.send_message(missatge.chat.id, "Et trobes bé?")
+    bot.send_message(missatge.chat.id, "https://www.youtube.com/watch?v=nJ5F3ieB6nE")
+    bot.send_message(missatge.chat.id, "https://www.youtube.com/watch?v=e7fGQqpORfA")
+    bot.send_message(missatge.chat.id, "https://www.googleadservices.com/pagead/aclk?sa=L&ai=DChcSEwi65JivqsHtAhVJnu0KHX_eAewYABABGgJkZw&ae=2&ohost=www.google.com&cid=CAESQOD2HsOtLkjqpWDfRs8DpFO9_wKwJsswnOYHVdZJTWHTdopWFdgrUdK0_IRs_s_L6Dlim7OZwvZSQEWJy6ee6LQ&sig=AOD64_1I6P3uR50iLOvSxLG3RJnr13Y9tA&q&adurl&ved=2ahUKEwjm-4-vqsHtAhWIgVwKHSbcAA0Q0Qx6BAgGEAE")
+    bot.send_message(missatge.chat.id, "Aqui et deixo dos enllaços a Youtube per a que et sentis millor i un enllaç a un psicòleg per si cal; se't recomana posar-te en contacte amb professionals i sobretot explicar-s'ho a un adult")
 #datetime.datetime.fromtimestamp(missatge.date).strftime('%c')
 
 
