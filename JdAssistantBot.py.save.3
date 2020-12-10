@@ -11,7 +11,6 @@ TOKEN = '1376336790:AAFcTgWbf-4pJNejrAGknJSxZzuaCI6wXj0'
 bot = telebot.TeleBot(TOKEN)
 
 #Diccionari per guardar deures
-prova = []
 diccionari_alumne = {}
 variable = {}
 var_materia = {}
@@ -38,16 +37,9 @@ def agenda_command(missatge):
   dia = missatge.text
   variable[missatge.from_user.username] = dia
   alumne = missatge.from_user.username
-
   if diccionari_alumne == {}:
-    diccionari_alumne[alumne] = {dia:[]}
-
-  elif diccionari_alumne != {} and missatge.from_user.username not in diccionari_alumne.keys():
-    diccionari_alumne[missatge.from_user.username] = {dia:[]}
-
-  elif diccionari_alumne  != {} and dia not in  diccionari_alumne[alumne].keys():
+    diccionari_alumne[alumne] = {dia:[]}  elif diccionari_alumne  != {} and diccionari_alumne.keys() != missatge.from_user.username or dia not in  diccionari_alumne[alumne].keys():
     diccionari_alumne[alumne] = [diccionari_alumne[alumne],{dia:[]}]
-
   else:
     diccionari_alumne[alumne]= diccionari_alumne[alumne]
 
@@ -110,9 +102,6 @@ def consulta(missatge):
     for u in diccionari_alumne[missatge.from_user.username][f][variable[missatge.from_user.username]]:
       bot.send_message(missatge.chat.id, u)
     print(u)
-  elif varaible[missatge.from_user.username] in diccionari_alumne[missatge.from_user.username].keys():
-    for u in diccionari_alumne[missatge.from_user.username][varaible[missatge.from_user.username]]:
-      bot.send_message(missatge.chat.id, u)
   else:
     bot.send_message(missatge.chat.id, "El dia que demamnes no te deures asignats")
   return ""
@@ -134,29 +123,21 @@ def estat(missatge):
     bot.send_animation(missatge.chat.id, "https://media.tenor.com/images/a1804436e7606fc88ff8a69c9b0bf65c/tenor.gif")
 
   if missatge.text == ":- (" and estat_anim_neg == {}:
-    temps[missatge.from_user.username] = [str(missatge.date)]
-    global prova
-    prova = temps[missatge.from_user.username]
-    print(prova)
-    print(temps)
+    temps[missatge.from_user.username] = missatge.date
     estat_anim_neg[missatge.from_user.username] = [missatge.text + " : " + datetime.datetime.fromtimestamp(missatge.date).strftime('%c')]
   elif missatge.text == ":- (" and estat_anim_neg != {}:
-    n  = prova.append(str(missatge.date))
-    print(prova)
-    estat_anim_neg[missatge.from_user.username] = estat_anim_neg[missatge.from_user.username],[missatge.text + datetime.datetime.fromtimestamp(missatge.date).strftime('%c')]
+    estat_anim_neg[missatge.from_user.username] = estat_anim_neg[missatge.from_user.username], [missatge.text + datetime.datetime.fromtimestamp(missatge.date).strftime('%c')]
   else:
     estat_anim[missatge.from_user.username]= missatge.text
   print(estat_anim)
   print(estat_anim_neg)
-  temps[missatge.from_user.username] = prova
-  print(temps)
-  if len(temps[missatge.from_user.username])  >= 3:
+
+  if len(estat_anim_neg[missatge.from_user.username])  >= 3:
     bot.send_message(missatge.chat.id, "Et trobes bé?")
     bot.send_message(missatge.chat.id, "https://www.youtube.com/watch?v=nJ5F3ieB6nE")
     bot.send_message(missatge.chat.id, "https://www.youtube.com/watch?v=e7fGQqpORfA")
-    bot.send_message(missatge.chat.id, "https://infolibros.org/libros-de-desarrollo-personal-gratis-pdf/")
-    bot.send_message(missatge.chat.id, "https://open.spotify.com/show/0sGGLIDnnijRPLef7InllD")
-    bot.send_message(missatge.chat.id, "Aqui et deixo dos enllaços a Youtube per a que et sentis millor, un enllaç a una pàgina web amb llibres d'autoajuda que potser et serveixen i també un enllaç al podcast d''Entiende tu mente' per si et cal; si no et serveix se't recomana posar-te en contacte amb professionals i sobretot explicar-s'ho a un adult")
+    bot.send_message(missatge.chat.id, "https://www.googleadservices.com/pagead/aclk?sa=L&ai=DChcSEwi65JivqsHtAhVJnu0KHX_eAewYABABGgJkZw&ae=2&ohost=www.google.com&cid=CAESQOD2HsOtLkjqpWDfRs8DpFO9_wKwJsswnOYHVdZJTWHTdopWFdgrUdK0_IRs_s_L6Dlim7OZwvZSQEWJy6ee6LQ&sig=AOD64_1I6P3uR50iLOvSxLG3RJnr13Y9tA&q&adurl&ved=2ahUKEwjm-4-vqsHtAhWIgVwKHSbcAA0Q0Qx6BAgGEAE")
+    bot.send_message(missatge.chat.id, "Aqui et deixo dos enllaços a Youtube per a que et sentis millor i un enllaç a un psicòleg per si cal; se't recomana posar-te en contacte amb professionals i sobretot explicar-s'ho a un adult")
 #datetime.datetime.fromtimestamp(missatge.date).strftime('%c')
 
 
