@@ -43,7 +43,8 @@ def agenda_command(missatge):
     diccionari_alumne[alumne] = [{"Dilluns":[]} , {"Dimarts":[]} , {"Dimecres":[]} , {"Dijous":[]} , {"Divendres":[]}]
 #    diccionari_alumne[alumne] = {dia:[]}
 
- # elif diccionari_alumne != {} and missatge.from_user.username not in diccionari_alumne.keys():
+  elif diccionari_alumne != {} and missatge.from_user.username not in diccionari_alumne.keys():
+    diccionari_alumne[missatge.from_user.username] = [{"Dilluns":[]} , {"Dimarts":[]} , {"Dimecres":[]} , {"Dijous":[]} , {"Divendres":[]}]
 #    diccionari_alumne[missatge.from_user.username] = {dia:[]}
 
 #  elif diccionari_alumne  != {} and dia not in  diccionari_alumne[alumne].keys():
@@ -110,15 +111,14 @@ def consulta(missatge):
   variable[missatge.from_user.username] = missatge.text
   print(variable)
   print(diccionari_alumne[missatge.from_user.username])
-  if variable[missatge.from_user.username] in dies:
-    f = dies.index(variable[missatge.from_user.username])
-  if variable[missatge.from_user.username] in diccionari_alumne[missatge.from_user.username][f].keys():
+  f = dies.index(variable[missatge.from_user.username])
+  if diccionari_alumne[missatge.from_user.username][f][variable[missatge.from_user.username]] != []:
     for u in diccionari_alumne[missatge.from_user.username][f][variable[missatge.from_user.username]]:
       bot.send_message(missatge.chat.id, u)
-    print(u)
-  elif varaible[missatge.from_user.username] in diccionari_alumne[missatge.from_user.username].keys():
-    for u in diccionari_alumne[missatge.from_user.username][varaible[missatge.from_user.username]]:
-      bot.send_message(missatge.chat.id, u)
+      print(u)
+#  elif varaible[missatge.from_user.username] in diccionari_alumne[missatge.from_user.username].keys():
+ #   for u in diccionari_alumne[missatge.from_user.username][varaible[missatge.from_user.username]]:
+  #    bot.send_message(missatge.chat.id, u)
   else:
     bot.send_message(missatge.chat.id, "El dia que demamnes no te deures asignats")
   return ""
@@ -163,73 +163,37 @@ def estat(missatge):
     bot.send_message(missatge.chat.id, "https://infolibros.org/libros-de-desarrollo-personal-gratis-pdf/")
     bot.send_message(missatge.chat.id, "https://open.spotify.com/show/0sGGLIDnnijRPLef7InllD")
     bot.send_message(missatge.chat.id, "Aqui et deixo dos enllaços a Youtube per a que et sentis millor, un enllaç a una pàgina web amb llibres d'autoajuda que potser et serveixen i també un enllaç al podcast d''Entiende tu mente' per si et cal; si no et serveix se't recomana posar-te en contacte amb professionals i sobretot explicar-s'ho a un adult")
+    temps[missatge.from_user.username].clear()
 #datetime.datetime.fromtimestamp(missatge.date).strftime('%c')
 
 
 
 @bot.message_handler(commands=['horari'])
 
-#def horari(missatge):
- # dia_alumne = [[] , [] , [] , [] , []]
- # hora = ["8 a 9", "9 a 10", "10 a 11", "11:30 a 12:30", "12:30 a 13:30", "13:30 a 14:30"]
- # dies = ["dilluns", "dimarts", "dimecres", "dijous", "divendres"]
+def horari(missatge):
+  dia_alumne = [[] , [] , [] , [] , []]
+  hora = ["8 a 9", "9 a 10", "10 a 11", "11:30 a 12:30", "12:30 a 13:30", "13:30 a 14:30"]
+  dies = ["dilluns", "dimarts", "dimecres", "dijous", "divendres"]
  # for d in dies:
-  #  for h in hora:
-   #   markup = types.ReplyKeyboardMarkup(row_width=3, one_time_keyboard=True)
-    #  markup.add(types.KeyboardButton("Mates"),types.KeyboardButton("Català"),types.KeyboardButton("Socials"),types.KeyboardButton("Castellà"),types.KeyboardButton("Naturals/Bio"),types.KeyboardButton("Fisica"),types.KeyboardButton("Filo/Etica"),types.KeyboardButton("Quimica"), types.KeyboardButton("EF"),types.KeyboardButton("CMC"),types.KeyboardButton("Eco"),types.KeyboardButton("Eco Empresa"),types.KeyboardButton("Tecno"),types.KeyboardButton("English"),types.KeyboardButton("Musica"),types.KeyboardButton("Plastica"),types.KeyboardButton("Optativa"))
-     # resposta=bot.send_message(missatge.chat.id, "Digues la matèria que et toca els  " + d + " de " + h, reply_markup=markup)
-     # f = dies.index(d)
-     # dia_alumne[f].append(resposta)
+#    for h in hora:
+#      print(d,h)
+  markup = types.ReplyKeyboardMarkup(row_width=3, one_time_keyboard=True)
+  markup.add(types.KeyboardButton("Mates"),types.KeyboardButton("Català"),types.KeyboardButton("Socials"),types.KeyboardButton("Castellà"),types.KeyboardButton("Naturals/Bio"),types.KeyboardButton("Fisica"),types.KeyboardButton("Filo/Etica"),types.KeyboardButton("Quimica"), types.KeyboardButton("EF"),types.KeyboardButton("CMC"),types.KeyboardButton("Eco"),types.KeyboardButton("Eco Empresa"),types.KeyboardButton("Tecno"),types.KeyboardButton("English"),types.KeyboardButton("Musica"),types.KeyboardButton("Plastica"),types.KeyboardButton("Optativa"))
+  resposta=bot.send_message(missatge.chat.id, "Digues la matèria que et toca els ", reply_markup=markup)
+#  f = dies.index(d)
+ # dia_alumne[f].append(resposta)
+  bot.register_next_step_handler(resposta, horari_dll)
 
-#for d in dies:
- # for h in hores
-def horari2(missatge):
-  markup = types.ReplyKeyboardMarkup(row_width=1, one_time_keyboard=True)
-  markup.add(types.KeyboardButton("Dilluns"),types.KeyboardButton("Dimarts"),types.KeyboardButton("Dimecres"),types.KeyboardButton("Dijous"),types.KeyboardButton("Divendres"))
-  resposta = bot.send_message(missatge.chat.id, "Digues de quin dia vols saber o apuntar el teu calendari", reply_markup=markup)
-  bot.register_next_step_handler(resposta, horari3)
-
-def horari3(missatge):
-  variable_horari[missatge.from_user.username] = missatge.text
-  if dia_alumne[dies.index(missatge.text)] == []:
-    print("hola")
+def horari_dll(missatge):
+  dll = [[],[],[],[],[],[]]
+  if dll [0] == []:
     markup = types.ReplyKeyboardMarkup(row_width=3, one_time_keyboard=True)
-    markup.add(types.KeyboardButton("8 a 9"),types.KeyboardButton("9 a 10"),types.KeyboardButton("10 a 11"),types.KeyboardButton("11:30 a 12:30"),types.KeyboardButton("12:30 a 13:30"),types.KeyboardButton("13:30 a 14:30"))
-    resposta = bot.send_message(missatge.chat.id, "L'horari està buit, selecciona les hores per omplir-lo", reply_markup=markup)
-    def horari(missatge):
-      hora_varaible[missatge.from_user.username] = missatge.text
-      markup = types.ReplyKeyboardMarkup(row_width=3, one_time_keyboard=True)
-      markup.add(types.KeyboardButton("Mates"),types.KeyboardButton("Català"),types.KeyboardButton("Socials"),types.KeyboardButton("Castellà"),types.KeyboardButton("Naturals/Bio"),types.KeyboardButton("Fisica"),types.KeyboardButton("Filo/Etica"),types.KeyboardButton("Quimica"), types.KeyboardButton("EF"),types.KeyboardButton("CMC"),types.KeyboardButton("Eco"),types.KeyboardButton("Eco Empresa"),types.KeyboardButton("Tecno"),types.KeyboardButton("English"),types.KeyboardButton("Musica"),types.KeyboardButton("Plastica"),types.KeyboardButton("Optativa"))
-      resposta=bot.send_message(missatge.chat.id, "Escull la matèria que et toca els " + variable_horari[missatge.from_user.username] + " de " + hora_variable[missatge.from_user.username], reply_markup=markup)
-      def horari2(missatge):
-        dia_alumne[dies.index(variable_horari[missatge.from_user.username])].append([hora_varaible[missatge.from_user.username] + ": " + missatge.text])
-        print(dia_alumne)
-        bot.send_message(missatge.chat.id, "S'ha apuntat que de " + hora_variable[missatge.from_user.username] + " els " + variable_horari[missatge.from_user.username] + " et toca " + missatge.text)
-
-  elif dia_alumne[dies.index(missatge.text)]  != [] and len(dia_alumne[dies.index(missatge.text)]) != 6:
-    print("adeu")
-    markup = types.ReplyKeyboardMarkup(row_width=3, one_time_keyboard=True)
-    markup.add(types.KeyboardButton("8 a 9"),types.KeyboardButton("9 a 10"),types.KeyboardButton("10 a 11"),types.KeyboardButton("11:30 a 12:30"),types.KeyboardButton("12:30 a 13:30"),types.KeyboardButton("13:30 a 14:30"))
-    resposta = bot.send_message(missatge.chat.id, "L'horari no està complert, selecciona les hores buides per omplir-lo", reply_markup=markup)
-  else:
-    bot.send_message(missatge.chat.id, dia_alumne[dies.index(missatge.text)])
-#  bot.register_next_step_handler(resposta,horari4)
-
-#def horari4(missatge):
- # hora_variable[missatge.from_user.username] = missatge.text
- # markup = types.ReplyKeyboardMarkup(row_width=3, one_time_keyboard=True)
-#  markup.add(types.KeyboardButton("Mates"),types.KeyboardButton("Català"),types.KeyboardButton("Socials"),types.KeyboardButton("Castellà"),types.KeyboardButton("Naturals/Bio"),types.KeyboardButton("Fisica"),types.KeyboardButton("Filo/Etica"),types.KeyboardButton("Quimica"), types.KeyboardButton("EF"),types.KeyboardButton("CMC"),types.KeyboardButton("Eco"),types.KeyboardButton("Eco Empresa"),types.KeyboardButton("Tecno"),types.KeyboardButton("English"),types.KeyboardButton("Musica"),types.KeyboardButton("Plastica"),types.KeyboardButton("Optativa"))
-#  resposta=bot.send_message(missatge.chat.id, "Escull la matèria que et toca els " + variable_horari[missatge.from_user.username] + " de " + hora_variable[missatge.from_user.username], reply_markup=markup)
-
-  #bot.register_next_step_handler(resposta, horari5)
-
-#def horari5(missatge):
- # dia_alumne[dies.index(variable_horari[missatge.from_user.username])].append([hora_variable[missatge.from_user.username] + ": " + missatge.text])
-  #print(dia_alumne)
-  #resposta = bot.send_message(missatge.chat.id, "S'ha apuntat que de " + hora_variable[missatge.from_user.username] + " els " + variable_horari[missatge.from_user.username] + " et toca " + missatge.text)
-  #bot.register_next_step_handler(resposta, horari3)
-
-
+    markup.add(types.KeyboardButton("Mates"),types.KeyboardButton("Català"),types.KeyboardButton("Socials"),types.KeyboardButton("Castellà"),types.KeyboardButton("Naturals/Bio"),types.KeyboardButton("Fisica"),types.KeyboardButton("Filo/Etica"),types.KeyboardButton("Quimica"), types.KeyboardButton("EF"),types.KeyboardButton("CMC"),types.KeyboardButton("Eco"),types.KeyboardButton("Eco Empresa"),types.KeyboardButton("Tecno"),types.KeyboardButton("English"),types.KeyboardButton("Musica"),types.KeyboardButton("Plastica"),types.KeyboardButton("Optativa"))
+    resposta=bot.send_message(missatge.chat.id, "hola",  reply_markup=markup)
+    x = dll[0].append(resposta)
+    print (dll)
+  elif dll [1] == []:
+    print ("hola")
 
 bot.polling()
 
