@@ -40,13 +40,14 @@ def agenda_command(missatge):
   alumne = missatge.from_user.username
 
   if diccionari_alumne == {}:
-    diccionari_alumne[alumne] = {dia:[]}
+    diccionari_alumne[alumne] = [{"Dilluns":[]} , {"Dimarts":[]} , {"Dimecres":[]} , {"Dijous":[]} , {"Divendres":[]}]
+#    diccionari_alumne[alumne] = {dia:[]}
 
-  elif diccionari_alumne != {} and missatge.from_user.username not in diccionari_alumne.keys():
-    diccionari_alumne[missatge.from_user.username] = {dia:[]}
+ # elif diccionari_alumne != {} and missatge.from_user.username not in diccionari_alumne.keys():
+#    diccionari_alumne[missatge.from_user.username] = {dia:[]}
 
-  elif diccionari_alumne  != {} and dia not in  diccionari_alumne[alumne].keys():
-    diccionari_alumne[alumne] = [diccionari_alumne[alumne],{dia:[]}]
+#  elif diccionari_alumne  != {} and dia not in  diccionari_alumne[alumne].keys():
+ #   diccionari_alumne[alumne] = [diccionari_alumne[alumne],{dia:[]}]
 
   else:
     diccionari_alumne[alumne]= diccionari_alumne[alumne]
@@ -77,19 +78,24 @@ def EscriureDeures (missatge):
     resposta3 = missatge.text
     deure = bot.send_message(missatge.chat.id, "Has apuntat " + resposta3)
     print(diccionari_alumne)
-    p = len(diccionari_alumne[alumne])
-    if p-1 != 0 and diccionari_alumne[alumne][p-1][variable[alumne]] == []:
-      diccionari_alumne[alumne][p-1][variable[alumne]]=[var_materia[alumne] + ": " + resposta3]
-      bot.send_animation(missatge.chat.id, "https://im3.ezgif.com/tmp/ezgif-3-fbe94dd84420.gif")
-      print(diccionari_alumne)
-    elif diccionari_alumne[alumne][variable[alumne]] == []:
-      diccionari_alumne[alumne][variable[alumne]]=[var_materia[alumne] + ": " + resposta3]
-      bot.send_animation(missatge.chat.id, "https://im3.ezgif.com/tmp/ezgif-3-fbe94dd84420.gif")
-      print(diccionari_alumne)
-    else:
-      diccionari_alumne[alumne][variable[alumne]]=[diccionari_alumne[alumne][variable[alumne]], [var_materia[alumne] + ": " + resposta3]]
-      bot.send_animation(missatge.chat.id, "https://im3.ezgif.com/tmp/ezgif-3-fbe94dd84420.gif")
-      print(diccionari_alumne)
+    p = dies.index(variable[alumne])
+#    p = len(diccionari_alumne[alumne])
+#    if p-1 != 0 and diccionari_alumne[alumne][p-1][variable[alumne]] == []:
+    x = diccionari_alumne[alumne][p][variable[alumne]].append([var_materia[alumne] + ": " + resposta3])
+#      x = diccionari_alumne[alumne][p][variable[alumne]].append([var_materia[alumne] + ": " + resposta3])
+#      diccionari_alumne[alumne][p-1][variable[alumne]]=[var_materia[alumne] + ": " + resposta3]
+    bot.send_animation(missatge.chat.id, "https://im3.ezgif.com/tmp/ezgif-3-fbe94dd84420.gif")
+    print(diccionari_alumne)
+#    elif diccionari_alumne[alumne][variable[alumne]] == []:
+ #     n = diccionari_alumne[alumne][variable[alumne]].append([var_materia[alumne] + ": " + resposta3])
+#      diccionari_alumne[alumne][variable[alumne]]=[var_materia[alumne] + ": " + resposta3]
+     # bot.send_animation(missatge.chat.id, "https://im3.ezgif.com/tmp/ezgif-3-fbe94dd84420.gif")
+#      print(diccionari_alumne)
+  #  else:
+   #   z = diccionari_alumne[alumne][variable[alumne]].append([var_materia[alumne] + ": " + resposta3])
+#      diccionari_alumne[alumne][variable[alumne]]=[diccionari_alumne[alumne][variable[alumne]], [var_materia[alumne] + ": " + resposta3]]
+    #  bot.send_animation(missatge.chat.id, "https://im3.ezgif.com/tmp/ezgif-3-fbe94dd84420.gif")
+ #     print(diccionari_alumne)
   return ""
 
 
