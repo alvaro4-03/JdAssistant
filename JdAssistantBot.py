@@ -205,31 +205,31 @@ def horari_dll2(missatge):
   bot.register_next_step_handler(resposta, horari_dll3)
 
 def horari_dll3(missatge):
-  x = diccionari_horari[missatge.from_user.username][0]["Dilluns"].append(missatge.text)
+  y = diccionari_horari[missatge.from_user.username][0]["Dilluns"].append(missatge.text)
   print(diccionari_horari)
   markup = types.ReplyKeyboardMarkup(row_width=3, one_time_keyboard=True)
   markup.add(types.KeyboardButton("Mates"),types.KeyboardButton("Català"),types.KeyboardButton("Socials"),types.KeyboardButton("Castellà"),types.KeyboardButton("Naturals/Bio"),types.KeyboardButton("Fisica"),types.KeyboardButton("Filo/Etica"),types.KeyboardButton("Quimica"), types.KeyboardButton("EF"),types.KeyboardButton("CMC"),types.KeyboardButton("Eco"),types.KeyboardButton("Eco Empresa"),types.KeyboardButton("Tecno"),types.KeyboardButton("English"),types.KeyboardButton("Musica"),types.KeyboardButton("Plastica"),types.KeyboardButton("Optativa"))
   resposta=bot.send_message(missatge.chat.id, "Digues la matèria que et toca els Dilluns de 10 a 11", reply_markup=markup)
   bot.register_next_step_handler(resposta, horari_dll4)
 
-def horari_dll3(missatge):
-  x = diccionari_horari[missatge.from_user.username][0]["Dilluns"].append(missatge.text)
+def horari_dll4(missatge):
+  z = diccionari_horari[missatge.from_user.username][0]["Dilluns"].append(missatge.text)
   print(diccionari_horari)
   markup = types.ReplyKeyboardMarkup(row_width=3, one_time_keyboard=True)
   markup.add(types.KeyboardButton("Mates"),types.KeyboardButton("Català"),types.KeyboardButton("Socials"),types.KeyboardButton("Castellà"),types.KeyboardButton("Naturals/Bio"),types.KeyboardButton("Fisica"),types.KeyboardButton("Filo/Etica"),types.KeyboardButton("Quimica"), types.KeyboardButton("EF"),types.KeyboardButton("CMC"),types.KeyboardButton("Eco"),types.KeyboardButton("Eco Empresa"),types.KeyboardButton("Tecno"),types.KeyboardButton("English"),types.KeyboardButton("Musica"),types.KeyboardButton("Plastica"),types.KeyboardButton("Optativa"))
   resposta=bot.send_message(missatge.chat.id, "Digues la matèria que et toca els Dilluns de 11:30 a 12:30", reply_markup=markup)
   bot.register_next_step_handler(resposta, horari_dll5)
 
-def horari_dll3(missatge):
-  x = diccionari_horari[missatge.from_user.username][0]["Dilluns"].append(missatge.text)
+def horari_dll5(missatge):
+  c = diccionari_horari[missatge.from_user.username][0]["Dilluns"].append(missatge.text)
   print(diccionari_horari)
   markup = types.ReplyKeyboardMarkup(row_width=3, one_time_keyboard=True)
   markup.add(types.KeyboardButton("Mates"),types.KeyboardButton("Català"),types.KeyboardButton("Socials"),types.KeyboardButton("Castellà"),types.KeyboardButton("Naturals/Bio"),types.KeyboardButton("Fisica"),types.KeyboardButton("Filo/Etica"),types.KeyboardButton("Quimica"), types.KeyboardButton("EF"),types.KeyboardButton("CMC"),types.KeyboardButton("Eco"),types.KeyboardButton("Eco Empresa"),types.KeyboardButton("Tecno"),types.KeyboardButton("English"),types.KeyboardButton("Musica"),types.KeyboardButton("Plastica"),types.KeyboardButton("Optativa"))
   resposta=bot.send_message(missatge.chat.id, "Digues la matèria que et toca els Dilluns de 12:30 a 13:30", reply_markup=markup)
   bot.register_next_step_handler(resposta, horari_dll6)
 
-  def horari_dll6(missatge):
-  x = diccionari_horari[missatge.from_user.username][0]["Dilluns"].append(missatge.text)
+def horari_dll6(missatge):
+  f = diccionari_horari[missatge.from_user.username][0]["Dilluns"].append(missatge.text)
   print(diccionari_horari)
   markup = types.ReplyKeyboardMarkup(row_width=3, one_time_keyboard=True)
   markup.add(types.KeyboardButton("Mates"),types.KeyboardButton("Català"),types.KeyboardButton("Socials"),types.KeyboardButton("Castellà"),types.KeyboardButton("Naturals/Bio"),types.KeyboardButton("Fisica"),types.KeyboardButton("Filo/Etica"),types.KeyboardButton("Quimica"), types.KeyboardButton("EF"),types.KeyboardButton("CMC"),types.KeyboardButton("Eco"),types.KeyboardButton("Eco Empresa"),types.KeyboardButton("Tecno"),types.KeyboardButton("English"),types.KeyboardButton("Musica"),types.KeyboardButton("Plastica"),types.KeyboardButton("Optativa"))
@@ -237,12 +237,12 @@ def horari_dll3(missatge):
   bot.register_next_step_handler(resposta, horari_dm1)
 
 def horari_dm1(missatge):
-  x = diccionari_horari[missatge.from_user.username][0]["Dilluns"].append(missatge.text)
+  d = diccionari_horari[missatge.from_user.username][0]["Dilluns"].append(missatge.text)
   print(diccionari_horari)
   markup = types.ReplyKeyboardMarkup(row_width=3, one_time_keyboard=True)
   markup.add(types.KeyboardButton("Mates"),types.KeyboardButton("Català"),types.KeyboardButton("Socials"),types.KeyboardButton("Castellà"),types.KeyboardButton("Naturals/Bio"),types.KeyboardButton("Fisica"),types.KeyboardButton("Filo/Etica"),types.KeyboardButton("Quimica"), types.KeyboardButton("EF"),types.KeyboardButton("CMC"),types.KeyboardButton("Eco"),types.KeyboardButton("Eco Empresa"),types.KeyboardButton("Tecno"),types.KeyboardButton("English"),types.KeyboardButton("Musica"),types.KeyboardButton("Plastica"),types.KeyboardButton("Optativa"))
   resposta=bot.send_message(missatge.chat.id, "Digues la matèria que et toca els Dilluns de 9 a 10", reply_markup=markup)
-  bot.register_next_step_handler(resposta, horari_dm2)
+#  bot.register_next_step_handler(resposta, horari_dm2)
  # dia_alumne[f].append(resposta)
 
 
