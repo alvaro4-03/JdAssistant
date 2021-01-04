@@ -181,18 +181,49 @@ def horari(missatge):
     markup.add(types.KeyboardButton("Endevant!"))
     resposta = bot.send_message(missatge.chat.id, "L'horari està buit, a continuació el podràs omplir", reply_markup=markup)
     bot.register_next_step_handler(resposta, horari_dll1)
-  else:
+
+  elif diccionari_horari != {} and missatge.from_user.username not in diccionari_horari.keys():
+    diccionari_horari[missatge.from_user.username] = [{"Dilluns":[]} , {"Dimarts":[]} , {"Dimecres":[]} , {"Dijous":[]} , {"Divendres":[]}]
     markup = types.ReplyKeyboardMarkup(row_width=1, one_time_keyboard=True)
+    markup.add(types.KeyboardButton("Endevant!"))
+    resposta = bot.send_message(missatge.chat.id, "L'horari està buit, a continuació el podràs omplir", reply_markup=markup)
+    bot.register_next_step_handler(resposta, horari_dll1)
+
+  else:
+    markup = types.ReplyKeyboardMarkup(row_width=2, one_time_keyboard=True)
     markup.add(types.KeyboardButton("Dilluns"),types.KeyboardButton("Dimarts"),types.KeyboardButton("Dimecres"),types.KeyboardButton("Dijous"),types.KeyboardButton("Divendres"),types.KeyboardButton("Veure sencer"))
     resposta1=bot.send_message( missatge.chat.id , "Escull el dia que vols saber l'horari o si vols veure tot l'horari",  reply_markup=markup )
     bot.register_next_step_handler(resposta1, consulta_horari)
 
 def consulta_horari(missatge):
- hora = ["8 a 9", "9 a 10", "10 a 11", "11:30 a 12:30", "12:30 a 13:30", "13:30 a 14:30"]
- if missatge.text == "Veure sencer":
+  y =[0,1,2,3,4]
+  x = [0,1,2,3,4,5]
+  hora = ["8 a 9", "9 a 10", "10 a 11", "11:30 a 12:30", "12:30 a 13:30", "13:30 a 14:30"]
+  if missatge.text == "Veure sencer":
+    for d in y:
+      for s in x:
+        bot.send_message(missatge.chat.id, "Els " + dies[d] + " et toca " + diccionari_horari[missatge.from_user.username][d][dies[d]][s] + " de " + hora[s])
+  elif missatge.text == "Dilluns":
+    for s in x:
+      bot.send_message(missatge.chat.id, "Els Dilluns et toca " + diccionari_horari[missatge.from_user.username][0][dies[0]][s] + " de " + hora[s])
+
+  elif missatge.text == "Dimarts":
+    for s in x:
+      bot.send_message(missatge.chat.id, "Els Dimarts et toca " + diccionari_horari[missatge.from_user.username][1][dies[1]][s] + " de " + hora[s])
+
+  elif missatge.text == "Dimecres":
+    for s in x:
+      bot.send_message(missatge.chat.id, "Els Dimecres et toca " + diccionari_horari[missatge.from_user.username][2][dies[2]][s] + " de " + hora[s])
+
+  elif missatge.text == "Dijous":
+    for s in x:
+      bot.send_message(missatge.chat.id, "Els Dijous et toca " + diccionari_horari[missatge.from_user.username][3][dies[3]][s] + " de " + hora[s])
+
+  elif missatge.text == "Divendres":
+    for s in x:
+      bot.send_message(missatge.chat.id, "Els Divendres et toca " + diccionari_horari[missatge.from_user.username][4][dies[4]][s] + " de " + hora[s])
 #    for d in diccionari_horari[missatge.from_user.username]:
  #     for h in diccionari_horari[missatge.from_user.username][dies]:
-   bot.send_message(missatge.chat.id, diccionari_horari[missatge.from_user.username])
 
 def horari_dll1(missatge):
   markup = types.ReplyKeyboardMarkup(row_width=3, one_time_keyboard=True)
@@ -383,7 +414,7 @@ def horari_dj6(missatge):
   print(diccionari_horari)
   markup = types.ReplyKeyboardMarkup(row_width=3, one_time_keyboard=True)
   markup.add(types.KeyboardButton("Mates"),types.KeyboardButton("Català"),types.KeyboardButton("Socials"),types.KeyboardButton("Castellà"),types.KeyboardButton("Naturals/Bio"),types.KeyboardButton("Fisica"),types.KeyboardButton("Filo/Etica"),types.KeyboardButton("Quimica"), types.KeyboardButton("EF"),types.KeyboardButton("CMC"),types.KeyboardButton("Eco"),types.KeyboardButton("Eco Empresa"),types.KeyboardButton("Tecno"),types.KeyboardButton("English"),types.KeyboardButton("Musica"),types.KeyboardButton("Plastica"),types.KeyboardButton("Optativa"))
-  resposta=bot.send_message(missatge.chat.id, "Digues la matèria que et toca els Dijouss de 13:30 a 14:30", reply_markup=markup)
+  resposta=bot.send_message(missatge.chat.id, "Digues la matèria que et toca els Dijous de 13:30 a 14:30", reply_markup=markup)
   bot.register_next_step_handler(resposta, horari_dv1)
 
 def horari_dv1(missatge):
@@ -437,7 +468,8 @@ def horari_dv6(missatge):
 
 def horari_f(missatge):
   d = diccionari_horari[missatge.from_user.username][4]["Divendres"].append(missatge.text)
-  bot.send_message(missatge.chat.id, "El calenddari s'ha apuntat correctament")
+  bot.send_message(missatge.chat.id, "L'horari s'ha apuntat correctament")
+  bot.send_message(missatge.chat.id, "Per poder veure el que has apuntat torna a fer /horari")
 
 bot.polling()
 
