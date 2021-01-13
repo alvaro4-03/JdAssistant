@@ -26,6 +26,10 @@ hora = ["8 a 9", "9 a 10", "10 a 11", "11:30 a 12:30", "12:30 a 13:30", "13:30 a
 hora_variable = {}
 diccionari_horari = {}
 #Diccionari per guardar comanda i username Comencen comandes
+@bot.message_handler(commands=['start'])
+def start(missatge):
+  bot.send_message(missatge.chat.id, "Per fer servir el bot escriu: /")
+  bot.send_message(missatge.chat.id, "Pots fer servir: /agenda /horari /consultaragenda o /estatdanim")
 
 @bot.message_handler(commands=['agenda'])
 def triarDia(missatge):
